@@ -35,22 +35,15 @@
 
 <p align="center"><b>Authors</b></p>
 <p align="center">
-Nathan Barros de Souza<br>
-Joyce Tavares Lopes<br>
+Flavia Nogueira Braga<br>
+Marcelle Spera<br>
 Luís Fernando Mercier Franco<br></p>
 
-# Canonical Monte Carlo algorithm for nonspherical molecules
+# Self-diffision coefficients from molecular dynamic data
 <p align="justify">
-This <i>NVT</i>-Monte Carlo algorithm was originally designed to test an equation of state developed for ellipsoidal molecules
- (<a href="https://doi.org/10.1021/acs.iecr.9b00766">Lopes and Franco, <b>Ind. Eng. Chem. Res.</b>, 58, 16, 6850–6859, 2019</a>). This thermodynamic model applies a
- perturbation theory, considering the reference fluid as hard ellipsoids of revolution interacting via short-range repulsive
- forces according to the Hard Gaussian Overlap (HGO) approach (<a href="https://doi.org/10.1063/1.1677837">Berne and Pechukas, <b>J. Chem. Phys.</b>, 56, 4213, 1972</a>)
- and the perturbed system ruled by attractive forces defined by a symmetrically spherical square-well potential. Our aim is to investigate
- the valid limits of reduced number density (&kappa;&rho;*) and ellipsoidal elongation (&kappa;) by calculating the first- and
- second-order perturbation coefficients, as well as the orientational ordering parameter of a uniaxial nematic phase. Please check our
- <a href="https://doi.org/10.1016/j.fluid.2021.113209">paper</a> for more details.
-</p><br>
-
+This algorithm was originally designed to calculate the self-diffusion of the components of a confined system in tree dimensions. In this work the x and y directions will be called the parallel directtions and z is the perpeticular direction, since the wall of the system is in the z axys. The self-diffusion calculation for the parallel components are calculated based on the work developed by Liu and colaborators (<a href="https://doi.org/10.1021/jp0375057">Liu et al., <b>J. Phys. Chem. B</b>, 108, 21, 6595–6602, 2004</a>). The self-diffusion calculation for the perpendicular component, however, is based on the work developed by (<a href="https://doi.org/10.1021/acs.jctc.6b00653">Franco et al., <b> J. Chem. Theory Comput.</b>, 12, 11, 5247–5255, 2016</a>).
+ 
+  
 ## Contents
 * <a href="#disclaimer">1. Disclaimer</a>
 * <a href="#language">2. Language</a>
@@ -64,18 +57,18 @@ This <i>NVT</i>-Monte Carlo algorithm was originally designed to test an equatio
 ## Disclaimer
 <p align="justify">
 The authors make no warranties about the use of this software. The authors hold no liabilities for the use of this software. The authors do not 
- recommend the use of this software whatsoever. The algorithm is made freely available to clarify any details discussed in the <a href="https://doi.org/10.1016/j.fluid.2021.113209">paper</a>.
+ recommend the use of this software whatsoever. The algorithm is made freely available to clarify any details discussed in the paper.
  All information contained herein regarding any specific methodology does not constitute or imply its endorsement or recommendation by the authors.
 </p>
 
 ## Language
 <p align="justify">
-The main program, subroutines, modules, and functions contain some explanatory comments and are mainly written in Fortran 95. The user can look for
- more information on Fortran language <a href="https://docs.oracle.com/cd/E19957-01/806-3591/C_f95.html">here</a>.
+The main program, subroutines, modules, and functions contain some explanatory comments and are mainly written in C language. 
 </p>
 
 ## Building and Compilation
 <p align="justify">
+  
 All programs, subroutines, modules, and functions must be compiled together due to their interdependence. For compilation, we have used
  GFortran, the GNU Fortran compiler, which is part of the GNU Compiler Collection (GCC). See more information on GFortran
  <a href="https://gcc.gnu.org/onlinedocs/gcc-4.4.7/gfortran.pdf">here</a>. We tested the algorithm using two GFortran versions: a GCC version
