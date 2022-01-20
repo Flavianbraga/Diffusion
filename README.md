@@ -39,9 +39,9 @@ Flavia Nogueira Braga<br>
 Marcelle Spera<br>
 Luís Fernando Mercier Franco<br></p>
 
-# Self-diffision coefficients from molecular dynamic data
+# Self-diffision coefficients for confined fluids from molecular dynamic data
 <p align="justify">
-This algorithm was originally designed to calculate the self-diffusion of the components of a confined system in tree dimensions. In this work the x and y directions will be called the parallel directtions and z is the perpeticular direction, since the wall of the system is in the z axys. The self-diffusion calculation for the parallel components are calculated based on the work developed by Liu and colaborators (<a href="https://doi.org/10.1021/jp0375057">Liu et al., <b>J. Phys. Chem. B</b>, 108, 21, 6595–6602, 2004</a>). The self-diffusion calculation for the perpendicular component, however, is based on the work developed by (<a href="https://doi.org/10.1021/acs.jctc.6b00653">Franco et al., <b> J. Chem. Theory Comput.</b>, 12, 11, 5247–5255, 2016</a>).
+This algorithm was originally designed to calculate the self-diffusion coefficient of the components of a confined system in tree dimensions. In this work, the x and y directions will be called the parallel directtions and z is the perpeticular direction, since the wall of the system is in the z axys. The self-diffusion coefficients for the parallel components are calculated based on the work developed by Liu and colaborators (<a href="https://doi.org/10.1021/jp0375057">Liu et al., <b>J. Phys. Chem. B</b>, 108, 21, 6595–6602, 2004</a>). The perpendicular self-diffusion coefficient calculation, however, is based on the work developed by (<a href="https://doi.org/10.1021/acs.jctc.6b00653">Franco et al., <b> J. Chem. Theory Comput.</b>, 12, 11, 5247–5255, 2016</a>).
  
   
 ## Contents
@@ -63,17 +63,15 @@ The authors make no warranties about the use of this software. The authors hold 
 
 ## Language
 <p align="justify">
-The main program, subroutines, modules, and functions contain some explanatory comments and are mainly written in C language. 
+The main program, subroutines and functions contain some explanatory comments and are mainly written in C language. 
 </p>
 
 ## Building and Compilation
 <p align="justify">
   
-All programs, subroutines, modules, and functions must be compiled together due to their interdependence. For compilation, we have used
- GFortran, the GNU Fortran compiler, which is part of the GNU Compiler Collection (GCC). See more information on GFortran
- <a href="https://gcc.gnu.org/onlinedocs/gcc-4.4.7/gfortran.pdf">here</a>. We tested the algorithm using two GFortran versions: a GCC version
- 9.3.0 in a Windows Subsystem for Linux (Ubuntu 20.04 LTS, Focal Fossa) and a GCC version 8.2.1 in a Red Hat Enterprise Linux OS. Visit the
- <a href="https://gcc.gnu.org/">GCC Website</a> for more information on these versions.
+
+  For compilation, we have used the GNU Compiler Collection (GCC). See more information on GCC
+ <a href="https://gcc.gnu.org/">here</a>. We tested the algorithm using some GCC versions: 9.3.0 in a Windows Subsystem for Linux (Ubuntu 20.04 LTS, Focal Fossa) 
 </p>
 
 <p align="justify">
@@ -81,16 +79,11 @@ We have built the code using the following command line:
 </p>
 
 ```console
-gfortran -O3 main.f95 functions.f95 subroutines.f95 module_folders.f95 module_global_variables.f95 module_initial_configuration.f95 module_variable_initialization.f95 -o main.out
+gcc diff.c -o out -lm
 ```
 
 <p align="justify">
-The <code>-O3</code> option is an optimization flag that improves compilation performance at the expense of compilation time. It includes all
- optimization options from <code>-O1</code> and <code>-O2</code> flags. Check <a href="https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html">this link</a>
- for more details. In some cases, it might be necessary to add the <code>-fno-range-check</code> runtime option to disable range checking of input
- values during integer <code>READ</code> operations. Click <a href="https://gcc.gnu.org/onlinedocs/gcc-4.4.7/gfortran/Runtime-Options.html">here</a>
- for more information.
-</p>
+
 
 ## Reporting Errors
 <p align="justify">
