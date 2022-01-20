@@ -71,7 +71,7 @@ The main program, subroutines and functions contain some explanatory comments an
   
 
   For compilation, we have used the GNU Compiler Collection (GCC). See more information on GCC
- <a href="https://gcc.gnu.org/">here</a>. We tested the algorithm using some GCC versions: 9.3.0 in a Windows Subsystem for Linux (Ubuntu 20.04 LTS, Focal Fossa) 
+ <a href="https://gcc.gnu.org/">here</a>. We tested the algorithm using some GCC versions: 9.3.0 in Ubuntu 20.04 LTS and 7.5.0 in Ubuntu 18.04 LTS.
 </p>
 
 <p align="justify">
@@ -92,85 +92,29 @@ If you spot an error in the program files and all other documentation, please su
 
 ## Data Input - VOLTAR AQUI
 <p align="justify">
-Before running the code, the user should first prepare an input file named <code>mchgo_input.ini</code> containing most of the external variables.
- These variables are read by the module <a href="https://github.com/LESC-Unicamp/TPT-coefficients-for-ellipsoidal-molecules/blob/main/module_variable_initialization.f95">Variable Initialization</a>.
- An <a href="https://github.com/LESC-Unicamp/TPT-coefficients-for-ellipsoidal-molecules/blob/main/mchgo_input.ini">example</a> of an input file was provided and explained below
- (<code>d0</code> means double precision):
+Before running the code, the user should first prepare the files obtained from Molecular Dynamics (MD) simulation. The program used for MD simulations was GROMACS (version 2018.03 tested). Multiple files are obtained as outputs in the simulation. Here, the files will be refered by "name.type".
+</p>
+First, it is necessary to obtain the mean density of the molecules in function of the distance in z. This was done using GROMACS and the files .trr and .tpr, as shown by the following command line:
 </p>
 
-```ini
-number_of_particles= 500
-reduced_temperature= 2.5d0
-n_lambda= 4
-lambda_values= 1.2d0 1.3d0 1.5d0 1.8d0 
-quaternion_angle= 0.d0
-max_steps= 20000000
-equilibration= 10000000
-n_save= 1000
-n_adjust= 200
-max_trans= 0.3d0
-max_rot= 0.1d0
-min_blockav= 600
-max_blockav= 1000
-trajectory_inquiry= N
-coefficient_inquiry= Y
-production_inquiry= Y
+```console
+gmx density -f prod_out.trr -s prod_out.tpr -o density.xvg -sl 1000 -d z
+
 ```
+For further details on how to use gmx density the user is refered to the GROMACS <a href="https://manual.gromacs.org/documentation/2018/onlinehelp/gmx-density.html">documentation</a> for the topic.
+</p>
+Next, the trajectory in function of the timestep for each molecule must be obtained. Once again using GROMACS and files .trr and .tpr, as shown by the following command line:
+</p>
+  
+```console
+gmx trjconv -f prod_out.trr -s prod_out.tpr -pbc nojump -o out.gro
 
-<p align="justify">
-The entry <code>number_of_particles</code> corresponds to the number of particles inside your simulation box. This must be a number with
- an exact cube root, which depends on the selected configuration of the crystalline structure: <code>&#8731;N</code> for a simple cubic structure, 
- <code>&#8731;(N/2)</code> for a body-centered cubic structure, and <code>&#8731;(N/4)</code> for a face-centered cubic structure, where N is
- the number of particles.
+```
+For further details on how to use gmx trjconv the user is refered to the GROMACS <a href="https://manual.gromacs.org/documentation/2018/onlinehelp/gmx-trjconv.html">documentation</a> for the topic.
 </p>
-<p align="justify">
-The entry <code>reduced_temperature</code> corresponds to the reduced thermodynamic temperature <i>T*</i> of the system.
+In both cases, the molecule of interest to obtain the self-diffusion coefficent must be carefully specified. Only one type of molecule can be studied at a time. 
 </p>
-<p align="justify">
-The entry <code>n_lambda</code> corresponds to the number of attractive range parameters <i>&lambda;</i>. For instance, if the user wants to calculate the perturbed potential  
- for four different attractive range parameters (e.g. <i>1.2</i>, <i>1.3</i>, <i>1.5</i>, and <i>1.8</i>), then <code>n_lambda</code> must be equal to <b>4</b>.
-</p>
-<p align="justify">
-The entry <code>lambda_values</code> corresponds to the values of the attractive range parameters. If the user selected multiple &lambda; in the previous entry, then all
- corresponding &lambda; values must be entered sequentially here, as shown in the example above. It does not necessarily have to be in ascending order.
-</p>
-<p align="justify">
-The entry <code>quaternion_angle</code> corresponds to the rotation angle of the molecules in the initial configuration. It is usually set to <b>0</b>, since all particles
- are initially oriented along the <i>z</i>-axis (body-fixed axis).
-</p>
-<p align="justify">
-The entry <code>max_steps</code> corresponds to the number of simulation cycles.
-</p>
-<p align="justify">
-The entry <code>equilibration</code> corresponds to the number of equilibration cycles. Therefore, the number of production cycles will be <code>max_steps &minus; equilibration</code>.
-</p>
-<p align="justify">
-The entry <code>n_save</code> corresponds to the data saving frequency (inversely proportional relation). It means data will be written out in external files every
- <code>n_save</code> cycles.
-</p>
-<p align="justify">
-The entry <code>n_adjust</code> corresponds to the adjusment frequency of the maximum displacement (inversely proportional relation). It means the maximum displacement
- (rotational and translational) will be adjusted every <code>n_adjust</code> cycles.
-</p>
-<p align="justify">
-The entries <code>max_trans</code> and <code>max_rot</code> correspond to the initial values of the maximum translational displacement and maximum rotational displacement,
- respectively.
-</p>
-<p align="justify">
-The entries <code>min_blockav</code> and <code>max_blockav</code> correspond to minimum and maximum number of blocks used in the block-average subroutine, respectively. They
- are necessary to estimate the statistical inefficiency.
-</p>
-<p align="justify">
-The last three entries are inquiry variables. <code>trajectory_inquiry</code> inquires whether the molecular trajectory (position and orientation) is going to be written out in
- external files. Type <b>N</b> for a negative answer or <b>Y</b> for an affirmative one. The trajectory file is properly formatted to be uploaded in OVITO, a scientific
- visualization and analysis software for atomistic and particle simulation data. <code>coefficient_inquiry</code> inquires whether the block-average subroutine will be
- called at the end of the Monte Carlo simulation to estimate averages and uncertainties of some relevant variables. Type <b>N</b> for a negative answer or <b>Y</b> for an 
- affirmative one. <code>production_inquiry</code> inquires whether only production-related results will be written out in external files. Type <b>Y</b> for only 
- production-related results or <b>N</b> to also include equilibration results.
-</p>
-
-<p align="justify">
-Reduced number density <code>&kappa;&rho;*</code> and elongation <code>&kappa;</code> must be provided by the user on the fly.
+An executable file with all the commands is also available: doit_diff.exe.
 </p>
 
 ## Initial Configuration
