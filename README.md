@@ -87,10 +87,10 @@ gcc diff.c -o out -lm
 
 ## Reporting Errors
 <p align="justify">
-If you spot an error in the program files and all other documentation, please submit an issue report using the <a href="https://github.com/LESC-Unicamp/TPT-coefficients-for-ellipsoidal-molecules/issues">Issues</a> tab.
+If you spot an error in the program files and all other documentation, please submit an issue report using the <a href="https://github.com/Flavianbraga/Diffusion/issues">Issues</a> tab.
 </p>
 
-## Data Input
+## Data Input - VOLTAR AQUI
 <p align="justify">
 Before running the code, the user should first prepare an input file named <code>mchgo_input.ini</code> containing most of the external variables.
  These variables are read by the module <a href="https://github.com/LESC-Unicamp/TPT-coefficients-for-ellipsoidal-molecules/blob/main/module_variable_initialization.f95">Variable Initialization</a>.
