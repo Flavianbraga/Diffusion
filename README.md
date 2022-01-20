@@ -90,7 +90,7 @@ gcc diff.c -o out -lm
 If you spot an error in the program files and all other documentation, please submit an issue report using the <a href="https://github.com/Flavianbraga/Diffusion/issues">Issues</a> tab.
 </p>
 
-## Data Input - VOLTAR AQUI
+## Data Input 
 <p align="justify">
 Before running the code, the user should first prepare the files obtained from Molecular Dynamics (MD) simulation. The program used for MD simulations was GROMACS (version 2018.03 tested). Multiple files are obtained as outputs in the simulation. Here, the files will be refered by "name.type".
 </p>
@@ -114,41 +114,29 @@ For further details on how to use gmx trjconv the user is refered to the GROMACS
 </p>
 In both cases, the molecule of interest to obtain the self-diffusion coefficent must be carefully specified. Only one type of molecule can be studied at a time. 
 </p>
+In order to obtain a compact file from the trajectories of the center of mass of the molecules, an additional code is needed: cmass.c. We have built the code using the following command line:
+</p>
+
+```console
+gcc cmass.c -o out -lm
+```
+To run the code, the command line used was:
+
+```console
+./out 1 out.gro cmass.dat
+```
+Where the first argument refers to the number of pseudoatoms used to built the molecule. In the case of methane, using <a href="http://trappe.oit.umn.edu/">TraPPE forcefield</a>, for exemple, this number equals to one, while for ethane is two. The second argument, refers to the output of gmx trjconv while the third argument is the output of cmass.c.
+
+It should be noticed that the number of steps in cmass.c must equal the ones used in the simulation (rever isso).
+
+A folder named "results" should also be created inside the folder that the programs are running, as shown by the command line:
+```console
+mkdir results
+```
 An executable file with all the commands is also available: doit_diff.exe.
 </p>
 
 ## Initial Configuration
-<p align="justify">
-The user is allowed to select one of three crystalline structures for the initial molecular configuration at the beginning of the simulation. Structures are either stretched, narrowed, or pure cubic geometries depending on the ellipsoidal elongation. The available structures are: simple cube (SC), body-centered cube (BCC), or face-centered cube (FCC). Like <code>&kappa;&rho;*</code> and <code>&kappa;</code> variables, the initial molecular configuration is also provided by the user on the fly.
-</p>
-
-<p align="justify">
-The initial configuration (position and orientation of particles) is, by default, written out in an external file and is also properly formatted to be uploaded in OVITO. An example of these crystalline structures can be seen below for <code>&kappa;&rho;* = 0.5</code>.
-</p>
-
-<em><p align="center">
-  <b>Figure 01-A</b>. Example of a simple cubic structure. Particles are hard spheres (<code>&kappa; = 1</code>). Number of particles: 512.<br>
-  Click [here](https://user-images.githubusercontent.com/73966482/125833600-f8091b9c-a405-4ae3-9f24-013f221fe0d2.png) to zoom the figure in.
-</p></em>
-
-![SC](https://user-images.githubusercontent.com/73966482/125833600-f8091b9c-a405-4ae3-9f24-013f221fe0d2.png)
-
-<em><p align="center">
-  <b>Figure 01-B</b>. Example of a narrowed body-centered cubic structure. Particles are oblate ellipsoids of revolution (<code>&kappa; < 1.0</code>).<br>
-  Number of particles: 686. Click [here](https://user-images.githubusercontent.com/73966482/125834422-f91daed1-18b6-4a83-81cb-868aa0a0e59a.png) to zoom the figure in.
-</p></em>
-
-![BCC](https://user-images.githubusercontent.com/73966482/125834422-f91daed1-18b6-4a83-81cb-868aa0a0e59a.png)
-
-<em><p align="center">
-  <b>Figure 01-C</b>. Example of a stretched face-centered cubic structure. Particles are prolate ellipsoids of revolution (<code>&kappa; > 1.0</code>).<br>
-  Number of particles: 500. Click [here](https://user-images.githubusercontent.com/73966482/125835625-a0891fb0-0fd1-4769-9911-f74196e32e64.png) to zoom the figure in.
-</p></em>
-
-![FCC](https://user-images.githubusercontent.com/73966482/125835625-a0891fb0-0fd1-4769-9911-f74196e32e64.png)
-
-<p align="justify">
-  <b>NOTE:</b><i> Please pay attention to choose an initial configuration that matches the valid number of particles for that structure.</i>
 </p>
 
 ## Files and Folders
