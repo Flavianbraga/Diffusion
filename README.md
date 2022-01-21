@@ -49,7 +49,8 @@ This algorithm was originally designed to calculate the self-diffusion coefficie
 * <a href="#language">2. Language</a>
 * <a href="#building-and-compilation">3. Building and Compilation</a>
 * <a href="#reporting-errors">4. Reporting Errors</a>
-* <a href="#data-input">5. Data Input</a>
+* <a href="#input-files-preparation">5. Input files preparation</a>
+* <a href="#data-input">6. Data Input</a>
 * <a href="#running-the-code">7. Running the Code</a>
 * <a href="#files-and-folders">8. Files and Folders</a>
 
@@ -91,7 +92,7 @@ gcc diff.c -o out -lm
 If you spot an error in the program files and all other documentation, please submit an issue report using the <a href="https://github.com/Flavianbraga/Diffusion/issues">Issues</a> tab.
 </p>
 
-## Data Input 
+## Input files preparation
 <p align="justify">
 Before running the code, the user should first prepare the files obtained from Molecular Dynamics (MD) simulation. The program used for MD simulations was GROMACS (version 2018.03 tested). Multiple files are obtained as outputs in the simulation. Here, the files will be refered by "name.type".
 </p>
@@ -126,7 +127,9 @@ To run the code, the command line used was:
 ```console
 ./out 2 out.gro cmass.dat 5000000 100
 ```
-Where the first argument refers to the number of pseudoatoms used to built the molecule. In the case of methane, using <a href="http://trappe.oit.umn.edu/">TraPPE forcefield</a>, for exemple, this number equals to one, while for ethane is two. The second argument, refers to the output of gmx trjconv while the third argument is the output of cmass.c. Special attention must be taken to the last arguments, as they refer to the inputs of the .mdp file in the simulation. The fourth argument is the number os steps of the simulation (nsteps in the .mdp file) and the fifth refers to the interval between the recorded positions in the simulation (nstxout in the .mdp file).
+Where the first argument refers to the number of pseudoatoms used to built the molecule. In the case of methane, using <a href="http://trappe.oit.umn.edu/">TraPPE forcefield</a>, for exemple, this number equals to one, while for ethane is two. The second argument, refers to the output of gmx trjconv while the third argument is the output of cmass.c. 
+</p>
+Special attention must be taken to the last arguments, as they refer to the inputs of the .mdp file in the simulation. The fourth argument is the number os steps of the simulation (nsteps in the .mdp file) and the fifth refers to the interval between the recorded positions in the simulation (nstxout in the .mdp file).
 
 Moreover, a folder named "results" should also be created inside the folder that the programs are running, as shown by the command line:
 ```console
@@ -137,15 +140,15 @@ Atention: this code is not suitable for molecules with pseudoatoms of different 
 An executable file with all the commands is also available: doit_diff.exe.
 </p>
 
+## Data Input 
+</p>
 
 ## Running the Code
 <p align="justify">
-Because shell commands are executed during simulation and files are opened and written, we recommend Linux's users to run the compiled code with the <code>sudo</code> command
- below to avoid administrative issues.
-</p>
+As the code refers to the calculation of the diffusion coefficient of molecules in confined fluids, the coefficient is dependent of the position in z. Therefore, special care mus be taken to chose the interval for calculation according to the density profile. 
 
 ```console
-sudo ./main.out
+
 ```
 </p>
 
