@@ -145,8 +145,15 @@ An executable file with all the commands is also available: doit_diff.exe.
 <p align="justify">
 As the code calculates the diffusion coefficient of molecules in confined fluids, the coefficients have a dependency of the position in z. Therefore, special care must be taken to chose the interval for calculation according to the density profile. 
   
-  
+  <em><p align="center">
+  <b>Figure 01-A</b>. Example of a 
+  Click [here](https://user-images.githubusercontent.com/98060271/150573653-6eead4ac-9bbb-40dd-a763-3719de5496c1.jpg) to zoom the figure in.
+</p></em>
 
+![SC](https://user-images.githubusercontent.com/98060271/150573653-6eead4ac-9bbb-40dd-a763-3719de5496c1.jpg)
+</p>
+
+To run the code, the command line used was:
 ```console
 ./out cmet1.dat 2.50 3.50 2.50 3.50 density.xvg 10 50
 ```
