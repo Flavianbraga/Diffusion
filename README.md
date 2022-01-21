@@ -44,7 +44,7 @@ Luís Fernando Mercier Franco<br></p>
 This algorithm was originally designed to calculate the self-diffusion coefficient of the components of a confined system in tree dimensions from data obtained by a Molecular Dynamics Simulation in GROMACS. In this work, the x and y directions will be called the parallel directtions and z is the perpeticular direction, since the wall of the system is in the z axys. The self-diffusion coefficients for the parallel components are calculated based on the work developed by Liu and colaborators (<a href="https://doi.org/10.1021/jp0375057">Liu et al., <b>J. Phys. Chem. B</b>, 108, 21, 6595–6602, 2004</a>). The perpendicular self-diffusion coefficient calculation, however, is based on the work developed by Franco and colaborators (<a href="https://doi.org/10.1021/acs.jctc.6b00653">Franco et al., <b> J. Chem. Theory Comput.</b>, 12, 11, 5247–5255, 2016</a>).
   
    <em><p align="center">
-  <b>Figure 01-A</b>. Example of slit pore of calcite containing methane and ethane.
+  <b>Figure 01</b>. Example of slit pore of calcite containing methane and ethane.
   Click [here](https://user-images.githubusercontent.com/98060271/150574991-7e6f68b7-26fe-45f1-bae2-3cfec67c4ef3.png) to zoom the figure in.
 </p></em>
 
@@ -150,7 +150,7 @@ An executable file with all the commands is also available: doit_diff.exe.
 As the code calculates the diffusion coefficient of molecules in confined fluids, the coefficients have a dependency of the position in z. Therefore, special care must be taken to chose the interval for calculation according to the density profile. 
   
   <em><p align="center">
-  <b>Figure 01-A</b>. Example of a density profile of a 5nm slit pore of calcite containing methane.
+  <b>Figure 02</b>. Example of a density profile of a 5nm slit pore of calcite containing methane.
   Click [here](https://user-images.githubusercontent.com/98060271/150573653-6eead4ac-9bbb-40dd-a763-3719de5496c1.jpg) to zoom the figure in.
 </p></em>
 
