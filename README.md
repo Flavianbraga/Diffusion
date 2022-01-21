@@ -57,9 +57,7 @@ This algorithm was originally designed to calculate the self-diffusion coefficie
 
 ## Disclaimer
 <p align="justify">
-The authors make no warranties about the use of this software. The authors hold no liabilities for the use of this software. The authors do not 
- recommend the use of this software whatsoever. The algorithm is made freely available to clarify any details discussed in the paper.
- All information contained herein regarding any specific methodology does not constitute or imply its endorsement or recommendation by the authors.
+The authors make no warranties about the use of this software. The authors hold no liabilities for the use of this software. T The algorithm is made freely available to clarify any details discussed in the paper. All information contained herein regarding any specific methodology does not constitute or imply its endorsement or recommendation by the authors.
 </p>
 
 ## Language
@@ -145,10 +143,12 @@ An executable file with all the commands is also available: doit_diff.exe.
 
 ## Running the Code
 <p align="justify">
-As the code refers to the calculation of the diffusion coefficient of molecules in confined fluids, the coefficient is dependent of the position in z. Therefore, special care mus be taken to chose the interval for calculation according to the density profile. 
+As the code calculates the diffusion coefficient of molecules in confined fluids, the coefficients have a dependency of the position in z. Therefore, special care must be taken to chose the interval for calculation according to the density profile. 
+  
+  
 
 ```console
-
+./out cmet1.dat 2.50 3.50 2.50 3.50 density.xvg 10 50
 ```
 </p>
 
