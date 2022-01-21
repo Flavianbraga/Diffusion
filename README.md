@@ -39,9 +39,9 @@ Flavia Nogueira Braga<br>
 Marcelle Spera<br>
 Luís Fernando Mercier Franco<br></p>
 
-# Self-diffision coefficients for confined fluids from molecular dynamic data
+# Self-diffision coefficients for confined fluids in a slit pore 
 <p align="justify">
-This algorithm was originally designed to calculate the self-diffusion coefficient of the components of a confined system in tree dimensions. In this work, the x and y directions will be called the parallel directtions and z is the perpeticular direction, since the wall of the system is in the z axys. The self-diffusion coefficients for the parallel components are calculated based on the work developed by Liu and colaborators (<a href="https://doi.org/10.1021/jp0375057">Liu et al., <b>J. Phys. Chem. B</b>, 108, 21, 6595–6602, 2004</a>). The perpendicular self-diffusion coefficient calculation, however, is based on the work developed by (<a href="https://doi.org/10.1021/acs.jctc.6b00653">Franco et al., <b> J. Chem. Theory Comput.</b>, 12, 11, 5247–5255, 2016</a>).
+This algorithm was originally designed to calculate the self-diffusion coefficient of the components of a confined system in tree dimensions from data obtained by a Molecular Dynamics Simulation in GROMACS. In this work, the x and y directions will be called the parallel directtions and z is the perpeticular direction, since the wall of the system is in the z axys. The self-diffusion coefficients for the parallel components are calculated based on the work developed by Liu and colaborators (<a href="https://doi.org/10.1021/jp0375057">Liu et al., <b>J. Phys. Chem. B</b>, 108, 21, 6595–6602, 2004</a>). The perpendicular self-diffusion coefficient calculation, however, is based on the work developed by Franco and colaborators (<a href="https://doi.org/10.1021/acs.jctc.6b00653">Franco et al., <b> J. Chem. Theory Comput.</b>, 12, 11, 5247–5255, 2016</a>).
  
   
 ## Contents
@@ -50,9 +50,8 @@ This algorithm was originally designed to calculate the self-diffusion coefficie
 * <a href="#building-and-compilation">3. Building and Compilation</a>
 * <a href="#reporting-errors">4. Reporting Errors</a>
 * <a href="#input-files-preparation">5. Input files preparation</a>
-* <a href="#data-input">6. Data Input</a>
-* <a href="#running-the-code">7. Running the Code</a>
-* <a href="#files-and-folders">8. Files and Folders</a>
+* <a href="#running-the-code">6. Running the Code</a>
+* <a href="#files-and-folders">7. Files and Folders</a>
 
 
 ## Disclaimer
@@ -136,9 +135,6 @@ mkdir results
 Atention: this code is not suitable for molecules with pseudoatoms of different mass.
 
 An executable file with all the commands is also available: doit_diff.exe.
-</p>
-
-## Data Input 
 </p>
 
 ## Running the Code
