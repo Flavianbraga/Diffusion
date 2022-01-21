@@ -124,16 +124,16 @@ gcc cmass.c -o out -lm
 To run the code, the command line used was:
 
 ```console
-./out 1 out.gro cmass.dat
+./out 2 out.gro cmass.dat 5000000 100
 ```
-Where the first argument refers to the number of pseudoatoms used to built the molecule. In the case of methane, using <a href="http://trappe.oit.umn.edu/">TraPPE forcefield</a>, for exemple, this number equals to one, while for ethane is two. The second argument, refers to the output of gmx trjconv while the third argument is the output of cmass.c.
+Where the first argument refers to the number of pseudoatoms used to built the molecule. In the case of methane, using <a href="http://trappe.oit.umn.edu/">TraPPE forcefield</a>, for exemple, this number equals to one, while for ethane is two. The second argument, refers to the output of gmx trjconv while the third argument is the output of cmass.c. Special attention must be taken to the last arguments, as they refer to the inputs of the .mdp file in the simulation. The fourth argument is the number os steps of the simulation (nsteps in the .mdp file) and the fifth refers to the interval between the recorded positions in the simulation (nstxout in the .mdp file).
 
-It should be noticed that the number of steps in cmass.c must equal the ones used in the simulation (rever isso).
-
-A folder named "results" should also be created inside the folder that the programs are running, as shown by the command line:
+Moreover, a folder named "results" should also be created inside the folder that the programs are running, as shown by the command line:
 ```console
 mkdir results
 ```
+Atention: this code is not suitable for molecules with pseudoatoms of different mass.
+
 An executable file with all the commands is also available: doit_diff.exe.
 </p>
 
